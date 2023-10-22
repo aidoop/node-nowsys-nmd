@@ -66,7 +66,8 @@ export class NowsysNmdClient {
     this._sendMessage(reqBuf)
   }
 
-  recieveRes() {
-    return this._recvMessage()
+  async recieveRes() {
+    let recvData = await this._recvMessage()
+    return this._parser.parseResStatus(recvData)
   }
 }
