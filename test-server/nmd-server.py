@@ -2,7 +2,7 @@ import socket
 import sys
 import random
 
-SEVER_IP = "localhost"
+SEVER_IP = "0.0.0.0"
 SERVER_PORT = 8000
 
 
@@ -28,11 +28,19 @@ while True:
         print(f"connection from {client_address}")
 
         # Receive the data in small chunks and retransmit it
+        product_quantity = 1000
+        detection_quantity = 0
+
         while True:
             data = connection.recv(10)
-            print(f"received data: {data}")
             if data:
                 print("received data: ", data)
+
+                product_quantity = product_quantity + 1
+                detection_quantity = detection_quantity + 1
+
+                product_quantity_bytes = product_quantity.to_bytes(4, "big")
+                detection_quantity_bytes = detection_quantity.to_bytes(2, "big")
 
                 resp_data = bytes(
                     [
@@ -46,12 +54,12 @@ while True:
                         0x44,
                         0x55,
                         0x66,
-                        0x00,
-                        0x01,
-                        0xE2,
-                        0x40,
-                        0x67,
-                        0x89,
+                        product_quantity_bytes[0],
+                        product_quantity_bytes[1],
+                        product_quantity_bytes[2],
+                        product_quantity_bytes[3],
+                        detection_quantity_bytes[0],
+                        detection_quantity_bytes[1],
                         0x03,
                         0x1C,
                     ]
