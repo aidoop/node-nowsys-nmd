@@ -1,12 +1,7 @@
-# @things-factory/node-casscale
+# @things-factory/node-nowsys-nmd
 
 Nowsys NMD client module for nodejs.
-
-## Install
-
-```bash
-$ npm install @things-factory/node-nowsys-nmd --save
-```
+(Nowsys Metal Detector)
 
 ## Build
 
