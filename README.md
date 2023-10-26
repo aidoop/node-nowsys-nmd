@@ -8,10 +8,26 @@ Nowsys NMD client module for nodejs.
 $ npm install @things-factory/node-nowsys-nmd --save
 ```
 
-## API Documentation
+## Build
 
-...
+```bash
+yarn install 
+yarn build
+```
 
-## Test
+## Examples
 
-`npm test`.
+### run test server
+
+```bash
+cd test-server
+python nmd-erver.py
+```
+
+### run the example
+
+```bash
+cd examples
+yarn install
+node simple.js
+```
